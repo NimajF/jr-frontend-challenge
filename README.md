@@ -1,9 +1,8 @@
 # Front-End Challenge - Junior 🚀
 
-## Acceso rápido a la rama
-
-[![Ir a la branch del código](https://img.shields.io/badge/CODIGO-CLICK--AQUI-blue?style=for-the-badge)](https://github.com/NimajF/jr-frontend-challenge/tree/benjamin-francisco)
-
+## Acceso rápido al CÓDIGO 
+[![Ir a la branch del código](https://img.shields.io/badge/CODIGO-CLICK--AQUI-blue?style=flat)](https://github.com/NimajF/jr-frontend-challenge/tree/benjamin-francisco) <br>
+[![Ir a la branch del código](https://img.shields.io/badge/SITIO--WEB-CLICK--AQUI-emerald?style=for-the-badge)](https://red-atlas-challenge-junior.vercel.app)
 
 ## Descripción
 

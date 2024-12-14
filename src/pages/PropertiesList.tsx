@@ -4,15 +4,19 @@ import PropertyCard from "../components/PropertyCard";
 import { Property } from "../types/Property";
 import SortSelect from "../components/SortSelect";
 import { Link } from "react-router-dom";
+import ParallaxBG from "../components/ParallaxBG";
 
 const PropertiesList = () => {
-  const [properties, setProperties] = useState<Property[]>([]);
-  const [sortOption, setSortOption] = useState("");
+  const [originalProperties, setOriginalProperties] = useState<Property[]>([]);
+  const [displayProperties, setDisplayProperties] = useState<Property[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [sortOption, setSortOption] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProperties();
-      setProperties(response);
+      setOriginalProperties(response);
+      setDisplayProperties(response);
     };
 
     fetchData();
@@ -20,16 +24,37 @@ const PropertiesList = () => {
 
   const handleSortChange = (value: string) => {
     setSortOption(value);
-    const sortedProperties = [...properties].sort((a, b) => {
-      if (value === "price-asc") return a.price - b.price;
-      if (value === "price-desc") return b.price - a.price;
+    console.log("Orden seleccionado:", value);
+  };
+
+  const filterProperties = (term: string) => {
+    const filtered = originalProperties.filter(
+      (property) =>
+        property.title.toLowerCase().includes(term.toLowerCase()) ||
+        property.address.toLowerCase().includes(term.toLowerCase())
+    );
+    return filtered;
+  };
+
+  const sortProperties = (properties: Property[], option: string) => {
+    return [...properties].sort((a, b) => {
+      if (option === "price-asc") return a.price - b.price;
+      if (option === "price-desc") return b.price - a.price;
       return 0;
     });
-    setProperties(sortedProperties);
   };
+
+  useEffect(() => {
+    let filtered = filterProperties(searchTerm);
+    if (sortOption) {
+      filtered = sortProperties(filtered, sortOption);
+    }
+    setDisplayProperties(filtered);
+  }, [searchTerm, sortOption, originalProperties]);
 
   return (
     <div className="container mx-auto p-4 mt-10">
+      <ParallaxBG />
       <h1 className="text-5xl font-bold mb-5 text-red-600">Propiedades</h1>
       <p className="text-gray-700 text-md mb-6">
         Aquí encontrarás una selección exclusiva de inmuebles que han confiado
@@ -49,20 +74,34 @@ const PropertiesList = () => {
           </span>
         </p>
       </div>
-      <div className="flex justify-end mb-4">
-        <SortSelect
-          options={[
-            { value: "price-asc", label: "Precio: Menor a Mayor" },
-            { value: "price-desc", label: "Precio: Mayor a Menor" },
-          ]}
-          onChange={handleSortChange}
-        />
+      <div className="flex justify-end mb-4 mt-5">
+        <div className="w-full flex justify-evenly items-center gap-x-2">
+          <input
+            type="text"
+            placeholder="Buscar por título o dirección..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="p-2 border border-gray-300 rounded-sm w-2/3 text-sm h-12 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          />
+          <SortSelect
+            options={[
+              { value: "price-asc", label: "Precio: Menor a Mayor" },
+              { value: "price-desc", label: "Precio: Mayor a Menor" },
+            ]}
+            onChange={handleSortChange}
+          />
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {properties.map((property) => (
+        {displayProperties.map((property) => (
           <PropertyCard key={property.id} property={property} />
         ))}
       </div>
+      {displayProperties.length === 0 && (
+        <p className="text-center text-gray-700 mt-10">
+          No se encontraron propiedades.
+        </p>
+      )}
     </div>
   );
 };

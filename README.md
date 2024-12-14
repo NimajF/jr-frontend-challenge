@@ -2,7 +2,7 @@
 
 ## Acceso rápido a la rama
 
-[![Ir a la branch del código](https://img.shields.io/badge/CODIGO-CLICK--AQUI-blue?style=for-the-badge)](https://github.com/username/jr-frontend-challenge/tree/benjamin-francisco)
+[![Ir a la branch del código](https://img.shields.io/badge/CODIGO-CLICK--AQUI-blue?style=for-the-badge)](https://github.com/NimajF/jr-frontend-challenge/tree/benjamin-francisco)
 
 
 ## Descripción

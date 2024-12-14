@@ -29,10 +29,37 @@ export const createProperty = async (
   property: Partial<Property>
 ): Promise<Property> => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/properties`, property);
+    const defaultImageUrl = `https://dummyimage.com/800x600/cccccc/000000&text=${encodeURIComponent(
+      property.title || "Property"
+    )}`;
+    const randomLat = (Math.random() * 180 - 90).toFixed(6);
+    const randomLng = (Math.random() * 360 - 180).toFixed(6);
+    const propertyWithDefaults = {
+      ...property,
+      owner: {
+        name: "benjamin-francisco",
+        contact: "bf@example.com",
+        ...property.owner,
+      },
+      images:
+        property.images && property.images.length > 0
+          ? property.images
+          : [defaultImageUrl],
+      location: property.location || {
+        lat: parseFloat(randomLat),
+        lng: parseFloat(randomLng),
+      },
+    };
+    const response = await axios.post(
+      `${API_BASE_URL}/properties`,
+      propertyWithDefaults
+    );
     return response.data;
-  } catch (error) {
-    console.error("Error creating property:", error);
+  } catch (error: any) {
+    console.error(
+      "Error creating property:",
+      error?.response?.data || error.message
+    );
     throw error;
   }
 };

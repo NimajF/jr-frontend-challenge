@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 interface Step {
   number: number;
@@ -29,13 +29,13 @@ const steps: Step[] = [
 ];
 
 const Stepper: React.FC = () => {
-  const [active, setActive] = useState<Step[]>(steps);
+  // const [active, setActive] = useState<Step[]>(steps);
 
-  const handleActive = (number: number) => {
-    const newSteps = [...steps];
-    newSteps.forEach((step) => (step.isActive = step.number === number));
-    setActive(newSteps);
-  };
+  // const handleActive = (number: number) => {
+  //   const newSteps = [...steps];
+  //   newSteps.forEach((step) => (step.isActive = step.number === number));
+  //   setActive(newSteps);
+  // };
   return (
     <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
       {steps.map((step) => (

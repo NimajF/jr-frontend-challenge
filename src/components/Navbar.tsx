@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="bg-white bg-opacity-25 backdrop-blur-md sticky top-0 z-50 text-white p-4 flex justify-between items-center">
-      <Link to="/" className="text-2xl font-bold text-red-600">
+      <Link
+        to="/"
+        className="text-2xl font-bold text-red-600 transition-all duration-75 hover:tracking-wider "
+      >
         RED ATLAS
       </Link>
 

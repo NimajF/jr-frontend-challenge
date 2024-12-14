@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Property } from "../types/Property";
 import validateForm from "../utils/formValidator";
+import { createProperty } from "../helpers/helpers";
 const CreatePropertyForm = () => {
   const [formData, setFormData] = useState<Partial<Property>>({
     title: "",
@@ -16,6 +18,7 @@ const CreatePropertyForm = () => {
   const [isFormSubmittable, setIsFormSubmittable] = useState<boolean | null>(
     false
   );
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -24,12 +27,14 @@ const CreatePropertyForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validateForm(formData as Property);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form Data Submitted:", formData);
+      const createdProperty = await createProperty(formData as Property);
+      console.log("Form Data Submitted:", createdProperty);
+      navigate(`/properties/${createdProperty.id}`);
     }
   };
 
@@ -84,7 +89,7 @@ const CreatePropertyForm = () => {
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Ingresa el nombre de la propiedad"
-                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               {errors.title && (
                 <p className="text-sm text-red-500">{errors.title}</p>
@@ -104,7 +109,7 @@ const CreatePropertyForm = () => {
                 value={formData.address}
                 onChange={handleChange}
                 placeholder="Ingresa la dirección"
-                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               {errors.address && (
                 <p className="text-sm text-red-500">{errors.address}</p>
@@ -147,7 +152,7 @@ const CreatePropertyForm = () => {
               value={formData.price}
               onChange={handleChange}
               placeholder="Ingresa el precio"
-              className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-28 rounded-sm focus:ring-blue-500 focus:border-blue-500"
+              className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-28 rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
             {errors.price && (
               <p className="text-sm text-red-500">{errors.price}</p>
@@ -190,7 +195,7 @@ const CreatePropertyForm = () => {
                 value={formData.area}
                 onChange={handleChange}
                 placeholder="Ingresa el area en m²"
-                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               {errors.area && (
                 <p className="text-sm text-red-500">{errors.area}</p>
@@ -210,7 +215,7 @@ const CreatePropertyForm = () => {
                 value={formData.type}
                 onChange={handleChange}
                 placeholder="Ingresa el tipo de propiedad"
-                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:ring-blue-500 focus:border-blue-500"
+                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               {errors.type && (
                 <p className="text-sm text-red-500">{errors.type}</p>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Property } from "../types/Property";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_FAKE_API;
 
 export const getProperties = async (): Promise<Property[]> => {
   try {

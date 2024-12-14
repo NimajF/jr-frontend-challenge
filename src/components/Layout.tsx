@@ -9,8 +9,9 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      <footer className="bg-gray-200 text-slate-500 text-center py-4">
-        &copy; {new Date().getFullYear()} Red Atlas Challenge
+      <footer className="text-sm h-16 bg-gray-200 text-slate-400 text-center py-6">
+        &copy; {new Date().getFullYear()} Red Atlas Challenge - All rights
+        reserved
       </footer>
     </div>
   );

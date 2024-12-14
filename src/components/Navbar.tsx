@@ -7,22 +7,22 @@ const Navbar = () => {
         RED ATLAS
       </Link>
 
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 max-sm:space-x-2">
         <Link
           to="/properties/new"
-          className="text-sm text-black font-semibold px-4 py-2 hover:bg-gray-100 transition-all"
+          className="text-sm max-sm:text-sm/[12px] text-black font-semibold px-4 py-2 hover:bg-gray-100 transition-all"
         >
           INGRESAR PROPIEDAD
         </Link>
         <Link
           to="#"
-          className="text-sm text-black font-semibold px-4 py-2 hover:bg-gray-100 transition-all"
+          className="text-sm max-sm:text-sm/[12px] text-black font-semibold px-4 py-2 hover:bg-gray-100 transition-all"
         >
           API
         </Link>
         <Link
           to="#"
-          className="text-sm text-black font-semibold px-4 py-2 hover:bg-gray-100 transition-all"
+          className="text-sm max-sm:text-sm/[12px] text-black font-semibold px-4 py-2 hover:bg-gray-100 transition-all"
         >
           TRABAJA CON NOSOTROS
         </Link>

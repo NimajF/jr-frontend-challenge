@@ -36,13 +36,13 @@ const PropertiesList = () => {
         en nosotros para ayudarte a encontrar el hogar o la inversión perfecta.
         ¡Explora y descubre el lugar de tus sueños!
       </p>
-      <div className="flex flex-row max-sm:mb-10 text-lg text-gray-700 rounded-md bg-gradient-to-r from-slate-100 p-6 w-1/2 md:w-full max-sm:w-full">
+      <div className="flex flex-row max-sm:mb-10 text-md text-gray-700 rounded-md bg-gradient-to-r from-slate-100 p-6 w-1/2 md:w-full max-sm:w-full">
         <p className="">
           ¿Quieres registrar tu propiedad?{" "}
           <span className="max-sm:mt-5 inline-block mt-2">
             <Link
               to="/properties/new"
-              className="ml-5 text-gray-100 rounded-sm bg-green-400 p-3"
+              className="ml-5 rounded-sm p-3 transition-all duration-75 bg-green-500 text-white hover:bg-green-400"
             >
               EMPIEZA AHORA
             </Link>

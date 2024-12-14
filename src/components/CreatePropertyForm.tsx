@@ -16,9 +16,7 @@ const CreatePropertyForm = () => {
   const [openPanel, setOpenPanel] = useState<number | null>(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isFormSubmittable, setIsFormSubmittable] = useState<boolean | null>(
-    false
-  );
+  const [isFormSubmittable] = useState<boolean | null>(false);
   const navigate = useNavigate();
 
   const handleChange = (

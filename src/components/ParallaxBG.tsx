@@ -12,9 +12,11 @@ const ParallaxBG = () => {
         style={{ height: 400 }}
         className="flex justify-center items-center flex-col"
       >
-        <div className="p-10 rounded-lg bg-slate-100 bg-opacity-10 drop-shadow-md backdrop-blur-sm">
+        <div className="p-10 rounded-md bg-slate-100 bg-opacity-10 drop-shadow-xl backdrop-blur-md">
           <h1 className="text-red-500 text-5xl font-bold">RED ATLAS</h1>
-          <h2 className="text-white text-lg">Junior Challenge</h2>
+          <h2 className="text-white text-xl [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+            Junior Challenge
+          </h2>
         </div>
       </div>
     </Parallax>

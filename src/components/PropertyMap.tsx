@@ -8,7 +8,7 @@ interface PropertyMapProps {
 
 const PropertyMap: React.FC<PropertyMapProps> = ({ latitude, longitude }) => {
   return (
-    <div className="w-full h-96 mt-5">
+    <div className="w-full h-96 mt-5 bg-black max-sm:mt-0">
       <Map
         initialViewState={{
           latitude,

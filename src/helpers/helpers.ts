@@ -3,10 +3,10 @@ import { Property } from "../types/Property";
 
 const API_BASE_URL = import.meta.env.VITE_FAKE_API;
 
-export const getProperties = async (): Promise<Property[]> => {
+export const getProperties = async (page: number): Promise<Property[]> => {
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/properties?page=1&limit=12`
+      `${API_BASE_URL}/properties?page=${page}&limit=12`
     );
     return response.data;
   } catch (error) {

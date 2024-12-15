@@ -12,6 +12,7 @@ const CreatePropertyForm = () => {
     status: "",
     isActive: true,
     area: 0,
+    description: "",
   });
   const [openPanel, setOpenPanel] = useState<number | null>(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -20,7 +21,9 @@ const CreatePropertyForm = () => {
   const navigate = useNavigate();
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -114,6 +117,19 @@ const CreatePropertyForm = () => {
                 <p className="text-sm text-red-500">{errors.address}</p>
               )}
             </div>
+            <div>
+              <label className="block text-gray-700 font-medium">
+                Descripción
+              </label>
+              <textarea
+                name="description"
+                value={formData.description || ""}
+                onChange={handleChange}
+                placeholder="Descripción de la propiedad"
+                rows={3}
+                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              ></textarea>
+            </div>
           </div>
         </div>
       </div>
@@ -202,22 +218,57 @@ const CreatePropertyForm = () => {
             </div>
             <div>
               <label
-                htmlFor="type"
+                htmlFor="status"
                 className="block text-sm font-medium text-gray-700"
               >
-                Tipo
+                Estado
               </label>
-              <input
-                type="text"
-                id="type"
-                name="type"
-                value={formData.type}
+              <select
+                id="status"
+                name="status"
+                value={formData.status}
                 onChange={handleChange}
-                placeholder="Ingresa el tipo de propiedad"
                 className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="sale">En venta</option>
+                <option value="rent">En alquiler</option>
+              </select>
+              {errors.status && (
+                <p className="text-sm text-red-500">{errors.status}</p>
+              )}
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="isActive"
+                name="isActive"
+                checked={formData.isActive}
+                onChange={(e) =>
+                  setFormData({ ...formData, isActive: e.target.checked })
+                }
+                className="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
               />
+              <label
+                htmlFor="isActive"
+                className="ml-2 block text-sm font-medium text-gray-700"
+              >
+                Activo
+              </label>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium">Tipo</label>
+              <select
+                name="type"
+                value={formData.type || ""}
+                onChange={handleChange}
+                className="text-sm mt-1 text-slate-700 bg-slate-100 border border-slate-200 p-2 block w-full rounded-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="house">Casa</option>
+                <option value="apartment">Apartamento</option>
+                <option value="office">Oficinas</option>
+              </select>
               {errors.type && (
-                <p className="text-sm text-red-500">{errors.type}</p>
+                <p className="text-red-500 text-sm">{errors.type}</p>
               )}
             </div>
           </div>

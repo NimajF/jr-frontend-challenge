@@ -3,7 +3,7 @@ import { Property } from "../types/Property";
 
 const PropertyCard = ({ property }: { property: Property }) => {
   return (
-    <div className=" cursor-pointer transition-all duration-200 rounded shadow-sm hover:shadow-lg overflow-hidden group">
+    <div className="cursor-pointer border border-slate-200 transition-all duration-200 rounded shadow-sm hover:shadow-lg overflow-hidden group">
       <div className="w-full h-36">
         <img
           src={property.images[0] || "https://via.placeholder.com/150"}
